@@ -16,4 +16,51 @@ const orders = [
   { id: 103, userId: 3, productId: 3, quantity: 1, status: "delivered" },
 ];
 
-module.exports = { users, products, orders };
+const financingRates = [
+  {
+    id: "konut",
+    name: "Konut Finansmanı",
+    minRate: 2.79,
+    maxRate: 3.35,
+    rateType: "monthly",
+    currency: "TRY",
+    minTermMonths: 12,
+    maxTermMonths: 120,
+    updatedAt: "2026-08-10",
+  },
+  {
+    id: "ihtiyac",
+    name: "İhtiyaç Finansmanı",
+    minRate: 3.19,
+    maxRate: 4.25,
+    rateType: "monthly",
+    currency: "TRY",
+    minTermMonths: 3,
+    maxTermMonths: 36,
+    updatedAt: "2026-08-10",
+  },
+  {
+    id: "tasit",
+    name: "Taşıt Finansmanı",
+    minRate: 2.99,
+    maxRate: 3.79,
+    rateType: "monthly",
+    currency: "TRY",
+    minTermMonths: 6,
+    maxTermMonths: 48,
+    updatedAt: "2026-08-10",
+  },
+  {
+    id: "ticari",
+    name: "Ticari Finansman",
+    minRate: 3.49,
+    maxRate: 4.75,
+    rateType: "monthly",
+    currency: "TRY",
+    minTermMonths: 3,
+    maxTermMonths: 60,
+    updatedAt: "2026-08-10",
+  },
+];
+
+module.exports = { users, products, orders, financingRates };

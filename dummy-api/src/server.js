@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const { users, products, orders } = require("./data");
+const { users, products, orders, financingRates } = require("./data");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -29,6 +29,8 @@ app.get("/", (req, res) => {
       "GET /api/products/:id",
       "GET /api/orders",
       "GET /api/orders/:id",
+      "GET /api/finansman-oranlari",
+      "GET /api/finansman-oranlari/:id",
       "POST /api/echo",
     ],
   });
@@ -54,6 +56,16 @@ app.get("/api/orders", (req, res) => res.json(orders));
 app.get("/api/orders/:id", (req, res) => {
   const item = findOr404(orders, req.params.id, res, "Order");
   if (item) res.json(item);
+});
+
+app.get("/api/finansman-oranlari", (req, res) => res.json(financingRates));
+app.get("/api/finansman-oranlari/:id", (req, res) => {
+  const item = financingRates.find((x) => x.id === req.params.id);
+  if (!item) {
+    res.status(404).json({ error: "Finansman türü bulunamadı" });
+    return;
+  }
+  res.json(item);
 });
 
 app.post("/api/echo", (req, res) => {
