@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const { users, products, orders, financingRates } = require("./data");
@@ -7,6 +8,10 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
+
+app.get(["/privacy-policy", "/gizlilik-politikasi"], (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "public", "privacy-policy.html"));
+});
 
 function findOr404(list, id, res, label) {
   const item = list.find((x) => x.id === Number(id));
@@ -31,6 +36,7 @@ app.get("/", (req, res) => {
       "GET /api/orders/:id",
       "GET /api/finansman-oranlari",
       "GET /api/finansman-oranlari/:id",
+      "GET /privacy-policy",
       "POST /api/echo",
     ],
   });
